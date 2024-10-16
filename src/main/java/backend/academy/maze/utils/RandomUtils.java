@@ -31,6 +31,10 @@ public final class RandomUtils {
         return RANDOM.nextInt(bound);
     }
 
+    public static double getRandomDouble() {
+        return RANDOM.nextDouble();
+    }
+
     public static <T> List<T> shuffle(Collection<T> collection) {
         List<T> elements = new ArrayList<>(collection);
         Collections.shuffle(elements, RANDOM);
