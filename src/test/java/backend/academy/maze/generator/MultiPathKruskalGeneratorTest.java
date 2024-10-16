@@ -1,0 +1,68 @@
+package backend.academy.maze.generator;
+
+import backend.academy.maze.model.Cell;
+import backend.academy.maze.model.Coordinate;
+import backend.academy.maze.model.Maze;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import static backend.academy.maze.utils.MazeUtils.getNextCoordinate;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
+class MultiPathKruskalGeneratorTest {
+    private final MultiPathKruskalGenerator generator = new MultiPathKruskalGenerator();
+
+    @Test
+    @DisplayName("Generate should create a maze with correct dimensions")
+    void generate_ShouldCreateMazeWithCorrectDimensions() {
+        // Arrange
+        int height = 10;
+        int width = 10;
+
+        // Act
+        Maze maze = generator.generate(height, width);
+
+        // Assert
+        assertThat(maze.height()).isEqualTo(height);
+        assertThat(maze.width()).isEqualTo(width);
+    }
+
+    @Test
+    @DisplayName("Generate should connect all cells")
+    void generate_ShouldConnectAllCells() {
+        // Arrange
+        int height = 10;
+        int width = 10;
+
+        // Act
+        Maze maze = generator.generate(height, width);
+
+        // Assert
+        boolean[][] visited = new boolean[height][width];
+        Coordinate start = new Coordinate(0, 0);
+        visitMaze(start, visited, maze);
+
+        boolean allReachable = true;
+        for (boolean[] row : visited) {
+            for (boolean cell : row) {
+                if (!cell) {
+                    allReachable = false;
+                    break;
+                }
+            }
+        }
+
+        assertThat(allReachable).isTrue();
+    }
+
+    private void visitMaze(Coordinate current, boolean[][] visited, Maze maze) {
+        visited[current.row()][current.column()] = true;
+
+        Cell currentCell = maze.getCell(current.row(), current.column());
+        for (Cell.Direction direction : currentCell.getDirections()) {
+            Coordinate next = getNextCoordinate(current, direction);
+            if (!visited[next.row()][next.column()]) {
+                visitMaze(next, visited, maze);
+            }
+        }
+    }
+}
