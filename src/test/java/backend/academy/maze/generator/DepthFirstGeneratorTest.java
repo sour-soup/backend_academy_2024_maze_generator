@@ -6,7 +6,7 @@ import backend.academy.maze.model.Coordinate;
 import backend.academy.maze.model.Maze;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import static backend.academy.maze.utils.CoordinateMazeUtils.getNextCoordinate;
+import static backend.academy.maze.utils.MazeUtils.getNextCoordinate;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 class DepthFirstGeneratorTest {

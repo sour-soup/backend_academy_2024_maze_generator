@@ -7,8 +7,8 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
-import static backend.academy.maze.utils.CoordinateMazeUtils.getNextCoordinate;
-import static backend.academy.maze.utils.CoordinateMazeUtils.isValidCoordinate;
+import static backend.academy.maze.utils.MazeUtils.getNextCoordinate;
+import static backend.academy.maze.utils.MazeUtils.isValidCoordinate;
 import static backend.academy.maze.utils.RandomUtils.getRandomElement;
 import static backend.academy.maze.utils.RandomUtils.getRandomInt;
 

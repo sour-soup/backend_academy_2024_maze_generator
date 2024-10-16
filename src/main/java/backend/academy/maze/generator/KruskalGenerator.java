@@ -7,9 +7,9 @@ import backend.academy.maze.model.Maze;
 import backend.academy.maze.utils.DisjointSetUnion;
 import java.util.ArrayList;
 import java.util.List;
-import static backend.academy.maze.utils.CoordinateMazeUtils.getIndex;
-import static backend.academy.maze.utils.CoordinateMazeUtils.getNextCoordinate;
-import static backend.academy.maze.utils.CoordinateMazeUtils.isValidCoordinate;
+import static backend.academy.maze.utils.MazeUtils.getIndex;
+import static backend.academy.maze.utils.MazeUtils.getNextCoordinate;
+import static backend.academy.maze.utils.MazeUtils.isValidCoordinate;
 import static backend.academy.maze.utils.RandomUtils.shuffle;
 
 public class KruskalGenerator implements Generator {
