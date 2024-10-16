@@ -6,6 +6,7 @@ import backend.academy.maze.model.Coordinate;
 import backend.academy.maze.model.Maze;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import static backend.academy.maze.utils.CoordinateMazeUtils.getNextCoordinate;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 class DepthFirstGeneratorTest {
@@ -87,14 +88,5 @@ class DepthFirstGeneratorTest {
                 visitMaze(next, visited, maze);
             }
         }
-    }
-
-    private Coordinate getNextCoordinate(Coordinate current, Direction direction) {
-        return switch (direction) {
-            case UP -> new Coordinate(current.row() - 1, current.column());
-            case DOWN -> new Coordinate(current.row() + 1, current.column());
-            case LEFT -> new Coordinate(current.row(), current.column() - 1);
-            case RIGHT -> new Coordinate(current.row(), current.column() + 1);
-        };
     }
 }

@@ -7,6 +7,8 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
+import static backend.academy.maze.utils.CoordinateMazeUtils.getNextCoordinate;
+import static backend.academy.maze.utils.CoordinateMazeUtils.isValidCoordinate;
 import static backend.academy.maze.utils.RandomUtils.getRandomElement;
 import static backend.academy.maze.utils.RandomUtils.getRandomInt;
 
@@ -42,15 +44,6 @@ public class DepthFirstGenerator implements Generator {
         return maze;
     }
 
-    private Coordinate getNextCoordinate(Coordinate current, Direction direction) {
-        return switch (direction) {
-            case UP -> new Coordinate(current.row() - 1, current.column());
-            case DOWN -> new Coordinate(current.row() + 1, current.column());
-            case LEFT -> new Coordinate(current.row(), current.column() - 1);
-            case RIGHT -> new Coordinate(current.row(), current.column() + 1);
-        };
-    }
-
     private List<Direction> getUnvisitedDirections(Coordinate current, Maze maze, boolean[][] visited) {
         List<Direction> unvisitedDirections = new ArrayList<>();
 
@@ -61,10 +54,5 @@ public class DepthFirstGenerator implements Generator {
             }
         }
         return unvisitedDirections;
-    }
-
-    private boolean isValidCoordinate(Coordinate coordinate, Maze maze) {
-        return coordinate.row() >= 0 && coordinate.row() < maze.height()
-               && coordinate.column() >= 0 && coordinate.column() < maze.width();
     }
 }
