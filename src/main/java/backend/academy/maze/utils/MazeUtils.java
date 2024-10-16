@@ -3,7 +3,10 @@ package backend.academy.maze.utils;
 import backend.academy.maze.model.Cell;
 import backend.academy.maze.model.Cell.SurfaceType;
 import backend.academy.maze.model.Coordinate;
+import backend.academy.maze.model.Edge;
 import backend.academy.maze.model.Maze;
+import java.util.ArrayList;
+import java.util.List;
 
 public final class MazeUtils {
     private MazeUtils() {
@@ -25,6 +28,24 @@ public final class MazeUtils {
 
     public static int getIndex(Coordinate coordinate, Maze maze) {
         return coordinate.row() * maze.width() + coordinate.column();
+    }
+
+    public static List<Edge> getAllEdgesFromMaze(Maze maze) {
+        List<Edge> edges = new ArrayList<>();
+        for (int row = 0; row < maze.height(); row++) {
+            for (int col = 0; col < maze.width(); col++) {
+                Coordinate from = new Coordinate(row, col);
+
+                for (Cell.Direction direction : Cell.Direction.values()) {
+                    Coordinate to = getNextCoordinate(from, direction);
+                    if (isValidCoordinate(to, maze)) {
+                        double weight = calculateWeight(maze, from, to);
+                        edges.add(new Edge(from, to, weight));
+                    }
+                }
+            }
+        }
+        return edges;
     }
 
     public static double calculateWeight(Maze maze, Coordinate from, Coordinate to) {
