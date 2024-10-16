@@ -57,4 +57,31 @@ class RandomUtilsTest {
         assertThatThrownBy(() -> RandomUtils.getRandomInt(bound))
             .isInstanceOf(RandomUtilsException.class);
     }
+
+    @Test
+    @DisplayName("Shuffle should return correct list")
+    void shuffle_ShouldReturnCorrectList_WhenCollectionHasElements() {
+        // Arrange
+        List<String> elements = List.of("apple", "banana", "cherry");
+
+        // Act
+        List<String> shuffledList = RandomUtils.shuffle(elements);
+
+        // Assert
+        assertThat(shuffledList)
+            .containsExactlyInAnyOrderElementsOf(elements);
+    }
+
+    @Test
+    @DisplayName("Shuffle should return empty list when colection is empty")
+    void shuffle_ShouldReturnEmptyList_WhenCollectionIsEmpty() {
+        // Arrange
+        List<String> emptyList = List.of();
+
+        // Act
+        List<String> shuffledList = RandomUtils.shuffle(emptyList);
+
+        // Assert
+        assertThat(shuffledList).isEmpty();
+    }
 }

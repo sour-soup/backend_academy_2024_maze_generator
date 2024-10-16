@@ -2,7 +2,10 @@ package backend.academy.maze.utils;
 
 import backend.academy.maze.exception.RandomUtilsException;
 import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 public final class RandomUtils {
     private static final SecureRandom RANDOM = new SecureRandom();
@@ -26,5 +29,11 @@ public final class RandomUtils {
             throw new RandomUtilsException("Bound must be positive");
         }
         return RANDOM.nextInt(bound);
+    }
+
+    public static <T> List<T> shuffle(Collection<T> collection) {
+        List<T> elements = new ArrayList<>(collection);
+        Collections.shuffle(elements, RANDOM);
+        return elements;
     }
 }
