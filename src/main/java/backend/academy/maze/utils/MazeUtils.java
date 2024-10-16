@@ -1,6 +1,6 @@
 package backend.academy.maze.utils;
 
-import backend.academy.maze.model.Cell;
+import backend.academy.maze.model.Cell.Direction;
 import backend.academy.maze.model.Cell.SurfaceType;
 import backend.academy.maze.model.Coordinate;
 import backend.academy.maze.model.Edge;
@@ -12,7 +12,7 @@ public final class MazeUtils {
     private MazeUtils() {
     }
 
-    public static Coordinate getNextCoordinate(Coordinate current, Cell.Direction direction) {
+    public static Coordinate getNextCoordinate(Coordinate current, Direction direction) {
         return switch (direction) {
             case UP -> new Coordinate(current.row() - 1, current.column());
             case DOWN -> new Coordinate(current.row() + 1, current.column());
@@ -36,7 +36,7 @@ public final class MazeUtils {
             for (int col = 0; col < maze.width(); col++) {
                 Coordinate from = new Coordinate(row, col);
 
-                for (Cell.Direction direction : Cell.Direction.values()) {
+                for (Direction direction : Direction.values()) {
                     Coordinate to = getNextCoordinate(from, direction);
                     if (isValidCoordinate(to, maze)) {
                         double weight = calculateWeight(maze, from, to);
