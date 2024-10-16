@@ -33,10 +33,20 @@ public final class Cell {
         connections.put(direction, value);
     }
 
+    @Getter
     public enum SurfaceType {
-        NORMAL,
-        SLOW,
-        SPEED
+        NORMAL(1.0, 0.7),
+        SLOW(1.0, 0.2),
+        SPEED(1.0, 0.1);
+
+        private final double weight;
+        private final double probability;
+
+        SurfaceType(double weight, double probability) {
+            this.weight = weight;
+            this.probability = probability;
+        }
+
     }
 
     public enum Direction {
