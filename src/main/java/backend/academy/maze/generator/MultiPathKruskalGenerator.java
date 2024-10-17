@@ -11,7 +11,7 @@ import static backend.academy.maze.utils.RandomUtils.getRandomDouble;
 import static backend.academy.maze.utils.RandomUtils.shuffle;
 
 public class MultiPathKruskalGenerator implements Generator {
-    private static final double BREAK_WALL_PROBABILITY = 0.2;
+    private static final double BREAK_WALL_PROBABILITY = 0.1;
 
     @Override
     public Maze generate(int height, int width) {
