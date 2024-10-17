@@ -170,14 +170,14 @@ class MazeTest {
 
     private static Object[][] provideAdjacentCellCoordinates() {
         return new Object[][] {
-            {new Coordinate(1, 1), new Coordinate(1, 2), Direction.RIGHT, Direction.LEFT}, // Right
-            {new Coordinate(1, 2), new Coordinate(1, 1), Direction.LEFT, Direction.RIGHT}, // Left
-            {new Coordinate(1, 1), new Coordinate(2, 1), Direction.DOWN, Direction.UP}, // Down
-            {new Coordinate(2, 1), new Coordinate(1, 1), Direction.UP, Direction.DOWN}, // Up
-            {new Coordinate(1, 1), new Coordinate(1, 0), Direction.LEFT, Direction.RIGHT}, // Left
-            {new Coordinate(1, 0), new Coordinate(1, 1), Direction.RIGHT, Direction.LEFT}, // Right
-            {new Coordinate(2, 1), new Coordinate(2, 0), Direction.LEFT, Direction.RIGHT}, // Left
-            {new Coordinate(2, 0), new Coordinate(2, 1), Direction.RIGHT, Direction.LEFT} // Right
+            {new Coordinate(1, 1), new Coordinate(1, 2), Direction.RIGHT, Direction.LEFT},
+            {new Coordinate(1, 2), new Coordinate(1, 1), Direction.LEFT, Direction.RIGHT},
+            {new Coordinate(1, 1), new Coordinate(2, 1), Direction.DOWN, Direction.UP},
+            {new Coordinate(2, 1), new Coordinate(1, 1), Direction.UP, Direction.DOWN},
+            {new Coordinate(1, 1), new Coordinate(1, 0), Direction.LEFT, Direction.RIGHT},
+            {new Coordinate(1, 0), new Coordinate(1, 1), Direction.RIGHT, Direction.LEFT},
+            {new Coordinate(2, 1), new Coordinate(2, 0), Direction.LEFT, Direction.RIGHT},
+            {new Coordinate(2, 0), new Coordinate(2, 1), Direction.RIGHT, Direction.LEFT}
         };
     }
 }

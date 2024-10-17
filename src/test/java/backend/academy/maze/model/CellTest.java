@@ -90,7 +90,7 @@ class CellTest {
     @ParameterizedTest
     @EnumSource(Direction.class)
     @DisplayName("GetDirections should return established direction")
-    void getDirections_ShouldReturnEstablishedDirection_WhenConnectionIsSet(Cell.Direction direction) {
+    void getDirections_ShouldReturnEstablishedDirection_WhenConnectionIsSet(Direction direction) {
         // Arrange
         Cell cell = new Cell(1, 2, SurfaceType.NORMAL);
         cell.setConnection(direction, true);
@@ -107,15 +107,15 @@ class CellTest {
     void getDirections_ShouldReturnSeveralDirections_WhenSeveralConnectionsAreEstablished() {
         // Arrange
         Cell cell = new Cell(1, 2, SurfaceType.NORMAL);
-        cell.setConnection(Cell.Direction.UP, true);
-        cell.setConnection(Cell.Direction.LEFT, true);
+        cell.setConnection(Direction.UP, true);
+        cell.setConnection(Direction.LEFT, true);
 
         // Act
         var directions = cell.getDirections();
 
         // Assert
-        assertThat(directions).contains(Cell.Direction.UP, Cell.Direction.LEFT);
-        assertThat(directions).doesNotContain(Cell.Direction.DOWN);
-        assertThat(directions).doesNotContain(Cell.Direction.RIGHT);
+        assertThat(directions).contains(Direction.UP, Direction.LEFT);
+        assertThat(directions).doesNotContain(Direction.DOWN);
+        assertThat(directions).doesNotContain(Direction.RIGHT);
     }
 }
