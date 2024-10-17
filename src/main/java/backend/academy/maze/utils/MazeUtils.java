@@ -1,5 +1,6 @@
 package backend.academy.maze.utils;
 
+import backend.academy.maze.exception.MazeException;
 import backend.academy.maze.model.Cell.Direction;
 import backend.academy.maze.model.Cell.SurfaceType;
 import backend.academy.maze.model.Coordinate;
@@ -46,6 +47,20 @@ public final class MazeUtils {
             }
         }
         return edges;
+    }
+
+    public static Direction getDirection(Coordinate from, Coordinate to) {
+        if (from.row() - 1 == to.row() && from.column() == to.column()) {
+            return Direction.UP;
+        } else if (from.row() + 1 == to.row() && from.column() == to.column()) {
+            return Direction.DOWN;
+        } else if (from.row() == to.row() && from.column() + 1 == to.column()) {
+            return Direction.RIGHT;
+        } else if (from.row() == to.row() && from.column() - 1 == to.column()) {
+            return Direction.LEFT;
+        } else {
+            throw new MazeException("Coordinates must be adjacent");
+        }
     }
 
     public static double calculateWeight(Maze maze, Coordinate from, Coordinate to) {
