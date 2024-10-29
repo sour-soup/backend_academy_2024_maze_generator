@@ -105,9 +105,29 @@ public class TileRenderer implements Renderer {
 
     private static String buildStringFromBlocks(String[][] blocks) {
         StringBuilder result = new StringBuilder();
-        for (String[] row : blocks) {
-            for (String block : row) {
-                result.append(block);
+
+        int rows = blocks.length;
+        int columns = rows > 0 ? blocks[0].length : 0;
+
+        String dotPrefix = "⸱⸱⸱⸱⸱⸱⸱⸱";
+        result.append(dotPrefix);
+        for (int col = 0; col < columns; col++) {
+            if ((col & 1) != 0) {
+                result.append(String.format("%2d", col / 2));
+            } else {
+                result.append("⸱⸱⸱⸱⸱⸱");
+            }
+        }
+        result.append(System.lineSeparator());
+
+        for (int row = 0; row < rows; row++) {
+            if ((row & 1) != 0) {
+                result.append(String.format("%2d ", row / 2));
+            } else {
+                result.append(dotPrefix);
+            }
+            for (String block : blocks[row]) {
+                result.append(String.format("%s", block));
             }
             result.append(System.lineSeparator());
         }
