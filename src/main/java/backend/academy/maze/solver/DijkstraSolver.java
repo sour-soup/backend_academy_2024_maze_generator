@@ -18,6 +18,9 @@ public class DijkstraSolver implements Solver {
         if (!isValidCoordinate(start, maze) || !isValidCoordinate(end, maze)) {
             throw new MazeException("Invalid start or end coordinates");
         }
+        if (start.equals(end)) {
+            throw new MazeException("Start and end coordinates must not be the same");
+        }
 
         int height = maze.height();
         int width = maze.width();
