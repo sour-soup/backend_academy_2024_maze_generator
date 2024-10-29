@@ -1,7 +1,6 @@
 package backend.academy.maze.app;
 
 import backend.academy.maze.exception.EmptyInputOutputException;
-import backend.academy.maze.exception.InputOutputException;
 import backend.academy.maze.exception.MazeException;
 import backend.academy.maze.generator.DepthFirstGenerator;
 import backend.academy.maze.generator.Generator;
@@ -19,6 +18,9 @@ import java.util.List;
 import java.util.Objects;
 
 public class MazeApp {
+    private static final int MAX_HEIGHT = 100;
+    private static final int MAX_WIDTH = 100;
+
     private final InputHandler inputHandler;
     private final OutputHandler outputHandler;
     private final Renderer renderer;
@@ -31,11 +33,8 @@ public class MazeApp {
 
     public void run() {
         try {
-            outputHandler.output("Enter the height of the maze:");
-            int height = getValidIntegerInput();
-
-            outputHandler.output("Enter the width of the maze:");
-            int width = getValidIntegerInput();
+            int height = getValidIntegerInput("Enter the height of the maze", 1, MAX_HEIGHT);
+            int width = getValidIntegerInput("Enter the width of the maze", 1, MAX_WIDTH);
 
             Generator mazeGenerator = selectMazeGenerator();
 
@@ -43,17 +42,13 @@ public class MazeApp {
             outputHandler.output("Maze generated!");
             outputHandler.output(renderer.render(maze));
 
-            outputHandler.output("Enter the start row:");
-            int startRow = getValidIntegerInput();
-            outputHandler.output("Enter the start column:");
-            int startColumn = getValidIntegerInput();
+            int startRow = getValidIntegerInput("Enter the start row", 0, height - 1);
+            int startColumn = getValidIntegerInput("Enter the start column", 0, width - 1);
 
             Coordinate start = new Coordinate(startRow, startColumn);
 
-            outputHandler.output("Enter the end row:");
-            int endRow = getValidIntegerInput();
-            outputHandler.output("Enter the end column:");
-            int endColumn = getValidIntegerInput();
+            int endRow = getValidIntegerInput("Enter the end row", 0, height - 1);
+            int endColumn = getValidIntegerInput("Enter the end column", 0, width - 1);
 
             Coordinate end = new Coordinate(endRow, endColumn);
 
@@ -115,14 +110,15 @@ public class MazeApp {
         }
     }
 
-    private int getValidIntegerInput() {
+    private int getValidIntegerInput(String prompt, int min, int max) {
         while (true) {
-            try {
-                return inputHandler.inputInteger();
-            } catch (EmptyInputOutputException e) {
-                throw e;
-            } catch (InputOutputException e) {
-                outputHandler.output("Invalid input. Please enter a valid integer.");
+            outputHandler.output(String.format("%s (Please enter a number between %d and %d):", prompt, min, max));
+            int input = inputHandler.inputInteger();
+            if (input >= min && input <= max) {
+                return input;
+            } else {
+                outputHandler.output(
+                    String.format("Input out of range. Please enter a number between %d and %d.", min, max));
             }
         }
     }
